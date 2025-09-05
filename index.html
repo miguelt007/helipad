@@ -97,13 +97,18 @@
           const lat = coords[1];
           const lon = coords[0];
 
-          const popup = `
-            <strong>${nome}</strong><br>
-            ICAO: ${icao || "N/A"}<br>
-            Ref: ${ref || "N/A"}<br>
-            Elevação: ${ele}<br>
-            <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank">Ver no Google Maps</a>
-          `;
+         const tipo = props.aeroway === "helipad" ? "Helipista" :
+             props.aeroway === "runway" ? "Pista" : "Desconhecido";
+
+         const popup = `
+         <strong>${nome}</strong><br>
+         Tipo: ${tipo}<br>
+         ICAO: ${icao || "N/A"}<br>
+         Ref: ${ref || "N/A"}<br>
+         Elevação: ${ele}<br>
+         <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank">Ver no Google Maps</a>
+`;
+
           layer.bindPopup(popup);
 
           const etiqueta = [icao, nomeCurto, ref].filter(Boolean).join(" – ");
