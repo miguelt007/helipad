@@ -87,6 +87,9 @@
         onEachFeature: function (feature, layer) {
           const props = feature.properties;
           const nome = props.name || "Sem nome";
+          const nomeCurto = nome.startsWith("Centro de Meios Aéreos de ")
+            ? "CMA de " + nome.replace("Centro de Meios Aéreos de ", "")
+            : nome;
           const icao = props.icao || "";
           const ref = props.ref || props.local_ref || "";
           const ele = props.ele ? props.ele + " m" : "Desconhecida";
@@ -103,7 +106,7 @@
           `;
           layer.bindPopup(popup);
 
-          const etiqueta = [icao, nome, ref].filter(Boolean).join(" – ");
+          const etiqueta = [icao, nomeCurto, ref].filter(Boolean).join(" – ");
           layer.bindTooltip(etiqueta, {
             permanent: true,
             direction: 'right',
