@@ -53,38 +53,31 @@
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    let geojsonData;
+    let geojsonData = { type: "FeatureCollection", features: [] };
     let geojsonLayer;
 
-    fetch("helipistas.geojson")
-      .then(res => res.json())
-      .then(data => {
-        geojsonData = data;
-        const operadores = new Set();
+    Promise.all([
+      fetch("helipistas.geojson").then(res => res.json()),
+      fetch("helipistas_ANEPC.geojson").then(res => res.json())
+    ]).then(([dados1, dados2]) => {
+      geojsonData.features = [...dados1.features, ...dados2.features];
 
-        data.features.forEach(f => {
-          const op = f.properties.operator;
-          if (op) operadores.add(op);
-        });
-
-        const select = document.getElementById("operador");
-        [...operadores].sort().forEach(op => {
-          const option = document.createElement("option");
-          option.value = op;
-          option.textContent = op;
-          select.appendChild(option);
-        });
-
-        renderLayer("todos");
+      const operadores = new Set();
+      geojsonData.features.forEach(f => {
+        const op = f.properties.operator;
+        if (op) operadores.add(op);
       });
 
-    function getCenterCoordinates(feature) {
-      const geom = feature.geometry;
-      if (geom.type === "Point") return geom.coordinates;
-      if (geom.type === "Polygon") return geom.coordinates[0][0];
-      if (geom.type === "MultiPolygon") return geom.coordinates[0][0][0];
-      return null;
-    }
+      const select = document.getElementById("operador");
+      [...operadores].sort().forEach(op => {
+        const option = document.createElement("option");
+        option.value = op;
+        option.textContent = op;
+        select.appendChild(option);
+      });
+
+      renderLayer("todos");
+    });
 
     function renderLayer(opSelecionado) {
       if (geojsonLayer) map.removeLayer(geojsonLayer);
@@ -94,35 +87,36 @@
           const op = feature.properties.operator || "desconhecido";
           return opSelecionado === "todos" || op === opSelecionado;
         },
+        pointToLayer: function (feature, latlng) {
+          const isANEPC = feature.properties.operator === "ANEPC";
+          return L.circleMarker(latlng, {
+            radius: 6,
+            color: isANEPC ? "blue" : "green",
+            fillColor: isANEPC ? "blue" : "green",
+            fillOpacity: 0.7
+          });
+        },
         onEachFeature: function (feature, layer) {
           const props = feature.properties;
           const nome = props.name || "Sem nome";
           const icao = props.icao || "";
           const ref = props.ref || props.local_ref || "";
           const ele = props.ele ? props.ele + " m" : "Desconhecida";
-          const coords = getCenterCoordinates(feature);
-          if (!coords) return;
-
-          const latlng = [coords[1], coords[0]];
-
-          const marker = L.circleMarker(latlng, {
-            radius: 6,
-            color: "green",
-            fillColor: "green",
-            fillOpacity: 0.7
-          }).addTo(map);
+          const coords = feature.geometry.coordinates;
+          const lat = coords[1];
+          const lon = coords[0];
 
           const popup = `
             <strong>${nome}</strong><br>
             ICAO: ${icao || "N/A"}<br>
             Ref: ${ref || "N/A"}<br>
             Elevação: ${ele}<br>
-            <a href="https://www.google.com/maps?q=${latlng[0]},${latlng[1]}" target="_blank">Ver no Google Maps</a>
+            <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank">Ver no Google Maps</a>
           `;
-          marker.bindPopup(popup);
+          layer.bindPopup(popup);
 
           const etiqueta = [icao, nome, ref].filter(Boolean).join(" – ");
-          marker.bindTooltip(etiqueta, {
+          layer.bindTooltip(etiqueta, {
             permanent: true,
             direction: 'right',
             offset: [10, 0],
@@ -130,6 +124,8 @@
           });
         }
       });
+
+      geojsonLayer.addTo(map);
     }
 
     document.getElementById("operador").addEventListener("change", function () {
