@@ -33,7 +33,7 @@
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Ferreira do Zêzere","operator":"ANEPC","aeroway":"runway","ref":"CMA-Ferreira do Zêzere"},"geometry":{"type":"Point","coordinates":[-8.25603,39.68168]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Sardoal","operator":"ANEPC","aeroway":"runway","ref":"CMA-Sardoal"},"geometry":{"type":"Point","coordinates":[-8.16078,39.54247]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Santarém","operator":"ANEPC","aeroway":"runway","ref":"CMA-Santarém"},"geometry":{"type":"Point","coordinates":[-8.68938,39.20881]}},
-{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Lourinhã","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Lourinhã"},"geometry":{"type":"Point","coordinates":[-9.35347,39.20861]}},
+{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Lourinhã","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Lourinhã"},"geometry":{"type":"Point","coordinates":[-9.30206,39.25382]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Mafra","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Mafra"},"geometry":{"type":"Point","coordinates":[-9.35646,38.94305]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Montijo","operator":"ANEPC","aeroway":"runway","ref":"CMA-Montijo"},"geometry":{"type":"Point","coordinates":[-9.04759,38.69240]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Ponte de Sor","operator":"ANEPC","aeroway":"runway","ref":"CMA-Ponte de Sor"},"geometry":{"type":"Point","coordinates":[-8.06029,39.20570]}},
@@ -47,5 +47,5 @@
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Loulé","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Loulé"},"geometry":{"type":"Point","coordinates":[-8.0357442,37.1314083]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Monchique","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Monchique"},"geometry":{"type":"Point","coordinates":[-8.5560662,37.3082305]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Portimão","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Portimão"},"geometry":{"type":"Point","coordinates":[-8.5848386,37.148075]}},
-{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de São Brás de Alportel","operator":"ANEPC","aeroway":"helipad","ref":"CMA-São Brás de Alportel"},"geometry":{"type":"Point","coordinates":[-7.9047692,37.1443583]}}
+{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de São Brás de Alportel","operator":"ANEPC","aeroway":"helipad","ref":"CMA-São Brás de Alportel"},"geometry":{"type":"Point","coordinates":[-7.90384,37.14371]}}
 ]}
