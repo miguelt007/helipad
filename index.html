@@ -38,7 +38,7 @@
   <div id="filtro">
     <label for="operador">Filtrar por operador:</label>
     <select id="operador">
-      <option value="todos">Todos</option>
+      <option value="todos">Todos (exceto ANEPC)</option>
       <option value="ANEPC">ANEPC</option>
     </select>
   </div>
@@ -54,15 +54,16 @@
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    let geojsonData;
+    let geojsonData = { type: "FeatureCollection", features: [] };
     let geojsonLayer;
 
-    fetch("https://miguelt007.github.io/helipad/helipistas_ANEPC.geojson")
-      .then(res => res.json())
-      .then(data => {
-        geojsonData = data;
-        renderLayer("todos");
-      });
+    Promise.all([
+      fetch("helipistas.geojson").then(res => res.json()),
+      fetch("helipistas_ANEPC.geojson").then(res => res.json())
+    ]).then(([dados1, dados2]) => {
+      geojsonData.features = [...dados1.features, ...dados2.features];
+      renderLayer("todos");
+    });
 
     function renderLayer(opSelecionado) {
       if (geojsonLayer) map.removeLayer(geojsonLayer);
@@ -70,7 +71,9 @@
       geojsonLayer = L.geoJSON(geojsonData, {
         filter: function (feature) {
           const op = feature.properties.operator || "desconhecido";
-          return opSelecionado === "todos" || op === opSelecionado;
+          if (opSelecionado === "ANEPC") return op === "ANEPC";
+          if (opSelecionado === "todos") return op !== "ANEPC";
+          return true;
         },
         pointToLayer: function (feature, latlng) {
           const isANEPC = feature.properties.operator === "ANEPC";
