@@ -39,6 +39,7 @@
     <label for="operador">Filtrar por operador:</label>
     <select id="operador">
       <option value="todos">Todos</option>
+      <option value="ANEPC">ANEPC</option>
     </select>
   </div>
 
@@ -53,31 +54,15 @@
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    let geojsonData = { type: "FeatureCollection", features: [] };
+    let geojsonData;
     let geojsonLayer;
 
-    Promise.all([
-      fetch("helipistas.geojson").then(res => res.json()),
-      fetch("helipistas_ANEPC.geojson").then(res => res.json())
-    ]).then(([dados1, dados2]) => {
-      geojsonData.features = [...dados1.features, ...dados2.features];
-
-      const operadores = new Set();
-      geojsonData.features.forEach(f => {
-        const op = f.properties.operator;
-        if (op) operadores.add(op);
+    fetch("helipistas_ANEPC.geojson")
+      .then(res => res.json())
+      .then(data => {
+        geojsonData = data;
+        renderLayer("todos");
       });
-
-      const select = document.getElementById("operador");
-      [...operadores].sort().forEach(op => {
-        const option = document.createElement("option");
-        option.value = op;
-        option.textContent = op;
-        select.appendChild(option);
-      });
-
-      renderLayer("todos");
-    });
 
     function renderLayer(opSelecionado) {
       if (geojsonLayer) map.removeLayer(geojsonLayer);
