@@ -30,7 +30,7 @@
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Seia","operator":"ANEPC","aeroway":"runway","ref":"CMA-Seia"},"geometry":{"type":"Point","coordinates":[-7.68855,40.45358]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Castelo Branco","operator":"ANEPC","aeroway":"runway","ref":"CMA-Castelo Branco"},"geometry":{"type":"Point","coordinates":[-7.44154,39.85061]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Proença-a-Nova","operator":"ANEPC","aeroway":"runway","ref":"CMA-Proença-a-Nova"},"geometry":{"type":"Point","coordinates":[-7.87730,39.73111]}},
-{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Ferreira do Zêzere","operator":"ANEPC","aeroway":"runway","ref":"CMA-Ferreira do Zêzere"},"geometry":{"type":"Point","coordinates":[-8.28417,39.71694]}},
+{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Ferreira do Zêzere","operator":"ANEPC","aeroway":"runway","ref":"CMA-Ferreira do Zêzere"},"geometry":{"type":"Point","coordinates":[-8.25346,39.68169]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Sardoal","operator":"ANEPC","aeroway":"runway","ref":"CMA-Sardoal"},"geometry":{"type":"Point","coordinates":[-8.25346,39.72084]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Santarém","operator":"ANEPC","aeroway":"runway","ref":"CMA-Santarém"},"geometry":{"type":"Point","coordinates":[-8.16033,39.68169]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Lourinhã","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Lourinhã"},"geometry":{"type":"Point","coordinates":[-9.35347,39.20861]}},
