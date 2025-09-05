@@ -43,9 +43,9 @@
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Beja","operator":"ANEPC","aeroway":"runway","ref":"CMA-Beja"},"geometry":{"type":"Point","coordinates":[-7.92514,38.07058]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Moura","operator":"ANEPC","aeroway":"runway","ref":"CMA-Moura"},"geometry":{"type":"Point","coordinates":[-7.48197,38.20148]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Ourique","operator":"ANEPC","aeroway":"runway","ref":"CMA-Ourique"},"geometry":{"type":"Point","coordinates":[-8.22738,37.65365]}},
-{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Cachopo","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Cachopo"},"geometry":{"type":"Point","coordinates":[-7.81330,37.33765]}},
-{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Loulé","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Loulé"},"geometry":{"type":"Point","coordinates":[-8.03316,37.33480]}},
-{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Monchique","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Monchique"},"geometry":{"type":"Point","coordinates":[-8.53359,37.31446]}},
-{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Portimão","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Portimão"},"geometry":{"type":"Point","coordinates":[-8.58226,37.30808]}},
-{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de São Brás de Alportel","operator":"ANEPC","aeroway":"helipad","ref":"CMA-São Brás de Alportel"},"geometry":{"type":"Point","coordinates":[-8.68681,37.14358]}}
+{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Cachopo","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Cachopo"},"geometry":{"type":"Point","coordinates":[-7.8150424,37.3348832]}},
+{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Loulé","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Loulé"},"geometry":{"type":"Point","coordinates":[-8.0357442,37.1314083]}},
+{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Monchique","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Monchique"},"geometry":{"type":"Point","coordinates":[-8.5560662,37.3082305]}},
+{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Portimão","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Portimão"},"geometry":{"type":"Point","coordinates":[-8.5848386,37.148075]}},
+{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de São Brás de Alportel","operator":"ANEPC","aeroway":"helipad","ref":"CMA-São Brás de Alportel"},"geometry":{"type":"Point","coordinates":[-7.9047692,37.1443583]}}
 ]}
