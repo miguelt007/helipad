@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <title>Helipistas de Portugal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    h1 {
+      text-align: center;
+      padding: 10px;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+    #map {
+      height: 90vh;
+    }
+    .icao-label {
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 2px 4px;
+      font-size: 12px;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Helipistas de Portugal</h1>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+
+  <script>
+    const map = L.map('map').setView([39.5, -8], 7);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    const geojsonLayer = new L.GeoJSON.AJAX("helipistas.geojson", {
+      pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, {
+          radius: 6,
+          color: "green",
+          fillColor: "green",
+          fillOpacity: 0.7
+        });
+      },
+      onEachFeature: function (feature, layer) {
+        const props = feature.properties;
+        const nome = props.name || "Sem nome";
+        const icao = props.icao || props.local_ref || "N/A";
+        const ele = props.ele ? props.ele + " m" : "Desconhecida";
+        const lat = feature.geometry.coordinates[1];
+        const lon = feature.geometry.coordinates[0];
+
+        const popup = `
+          <strong>${nome} (${icao})</strong><br>
+          Elevação: ${ele}<br>
+          <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank">Ver no Google Maps</a>
+        `;
+        layer.bindPopup(popup);
+
+        layer.bindTooltip(icao, {
+          permanent: true,
+          direction: 'right',
+          offset: [10, 0],
+          className: 'icao-label'
+        });
+      }
+    });
+
+    geojsonLayer.addTo(map);
+  </script>
+</body>
+</html>
