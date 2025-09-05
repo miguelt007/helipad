@@ -54,20 +54,24 @@
       onEachFeature: function (feature, layer) {
         const props = feature.properties;
         const nome = props.name || "Sem nome";
-        const icao = props.icao || props.local_ref || "N/A";
+        const icao = props.icao || "";
+        const ref = props.ref || props.local_ref || "";
         const ele = props.ele ? props.ele + " m" : "Desconhecida";
         const lat = feature.geometry.coordinates[1];
         const lon = feature.geometry.coordinates[0];
 
         const popup = `
-          <strong>${nome} (${icao})</strong><br>
+          <strong>${nome}</strong><br>
+          ICAO: ${icao || "N/A"}<br>
+          Ref: ${ref || "N/A"}<br>
           Elevação: ${ele}<br>
           <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank">Ver no Google Maps</a>
         `;
         layer.bindPopup(popup);
 
-        // Etiqueta permanente com ICAO + nome
-        layer.bindTooltip(`${icao} – ${nome}`, {
+        // Construir etiqueta com os dados disponíveis
+        const etiqueta = [icao, nome, ref].filter(Boolean).join(" – ");
+        layer.bindTooltip(etiqueta, {
           permanent: true,
           direction: 'right',
           offset: [10, 0],
