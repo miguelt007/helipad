@@ -28,7 +28,7 @@
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Guarda","operator":"ANEPC","aeroway":"helipad","ref":"CMA-Guarda"},"geometry":{"type":"Point","coordinates":[-7.27846,40.52982]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Meda","operator":"ANEPC","aeroway":"runway","ref":"CMA-Meda"},"geometry":{"type":"Point","coordinates":[-7.68855,40.96064]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Seia","operator":"ANEPC","aeroway":"runway","ref":"CMA-Seia"},"geometry":{"type":"Point","coordinates":[-7.68855,40.45358]}},
-{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Castelo Branco","operator":"ANEPC","aeroway":"runway","ref":"CMA-Castelo Branco"},"geometry":{"type":"Point","coordinates":[-7.44167,39.84833]}},
+{"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Castelo Branco","operator":"ANEPC","aeroway":"runway","ref":"CMA-Castelo Branco"},"geometry":{"type":"Point","coordinates":[-7.44154,39.85061]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Proença-a-Nova","operator":"ANEPC","aeroway":"runway","ref":"CMA-Proença-a-Nova"},"geometry":{"type":"Point","coordinates":[-7.44139,39.73021]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Ferreira do Zêzere","operator":"ANEPC","aeroway":"runway","ref":"CMA-Ferreira do Zêzere"},"geometry":{"type":"Point","coordinates":[-8.87362,39.73021]}},
 {"type":"Feature","properties":{"name":"Centro de Meios Aéreos de Sardoal","operator":"ANEPC","aeroway":"runway","ref":"CMA-Sardoal"},"geometry":{"type":"Point","coordinates":[-8.25346,39.72084]}},
