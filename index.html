@@ -56,7 +56,6 @@
     let geojsonData;
     let geojsonLayer;
 
-    // Carregar GeoJSON e extrair operadores únicos
     fetch("helipistas.geojson")
       .then(res => res.json())
       .then(data => {
@@ -79,6 +78,14 @@
         renderLayer("todos");
       });
 
+    function getCenterCoordinates(feature) {
+      const geom = feature.geometry;
+      if (geom.type === "Point") return geom.coordinates;
+      if (geom.type === "Polygon") return geom.coordinates[0][0];
+      if (geom.type === "MultiPolygon") return geom.coordinates[0][0][0];
+      return null;
+    }
+
     function renderLayer(opSelecionado) {
       if (geojsonLayer) map.removeLayer(geojsonLayer);
 
@@ -87,34 +94,35 @@
           const op = feature.properties.operator || "desconhecido";
           return opSelecionado === "todos" || op === opSelecionado;
         },
-        pointToLayer: function (feature, latlng) {
-          return L.circleMarker(latlng, {
-            radius: 6,
-            color: "green",
-            fillColor: "green",
-            fillOpacity: 0.7
-          });
-        },
         onEachFeature: function (feature, layer) {
           const props = feature.properties;
           const nome = props.name || "Sem nome";
           const icao = props.icao || "";
           const ref = props.ref || props.local_ref || "";
           const ele = props.ele ? props.ele + " m" : "Desconhecida";
-          const lat = feature.geometry.coordinates[1];
-          const lon = feature.geometry.coordinates[0];
+          const coords = getCenterCoordinates(feature);
+          if (!coords) return;
+
+          const latlng = [coords[1], coords[0]];
+
+          const marker = L.circleMarker(latlng, {
+            radius: 6,
+            color: "green",
+            fillColor: "green",
+            fillOpacity: 0.7
+          }).addTo(map);
 
           const popup = `
             <strong>${nome}</strong><br>
             ICAO: ${icao || "N/A"}<br>
             Ref: ${ref || "N/A"}<br>
             Elevação: ${ele}<br>
-            <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank">Ver no Google Maps</a>
+            <a href="https://www.google.com/maps?q=${latlng[0]},${latlng[1]}" target="_blank">Ver no Google Maps</a>
           `;
-          layer.bindPopup(popup);
+          marker.bindPopup(popup);
 
           const etiqueta = [icao, nome, ref].filter(Boolean).join(" – ");
-          layer.bindTooltip(etiqueta, {
+          marker.bindTooltip(etiqueta, {
             permanent: true,
             direction: 'right',
             offset: [10, 0],
@@ -122,8 +130,6 @@
           });
         }
       });
-
-      geojsonLayer.addTo(map);
     }
 
     document.getElementById("operador").addEventListener("change", function () {
